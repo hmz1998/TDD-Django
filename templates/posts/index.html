@@ -1,23 +1,35 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Welcome</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <h1>Welcome to the my blog</h1>
-        <h2>These are the latest posts</h2>
+{% extends 'posts/base.html' %}
 
-        {% for post in posts %}
-            <div class="post">
-                <a href="">{{ post.title }}</a>
-                <p>{{ post.description|truncatewords:24 }}</p>
+{% block title %}
+    My Django Test Blog
+{% endblock title %}
+
+{% block body %}
+    <section class="pt-3 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Welcome to the my blog</h1>
+                <p class="lead text-muted">These are the latest posts</p>
             </div>
-        {% endfor %}
+        </div>
+    </section>
 
-    </body>
-</html>
+    {% if posts %}
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-sm-4 pb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title|truncatewords:4 }}</h5>
+                            <small class="text-muted">{{ post.created_at }}</small>
+                            <p class="card-text mt-1">{{ post.description|truncatewords:15 }}</p>
+                            <small class="text-muted"><a href="{{ post.get_absolute_url }}">read more</a></small>
+                            {% comment %} <a href="{{ post.get_absolute_url }}" class="">read more ...</a> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock body %}
