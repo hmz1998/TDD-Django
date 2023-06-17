@@ -8,4 +8,6 @@ def index(request):
 
 
 def post_detail(request, slug):
-    return render(request, "posts/detail.html")
+    posts = Post.objects.all()
+    post = Post.objects.get(slug=slug)
+    return render(request, "posts/detail.html", {"post": post, "posts": posts})
