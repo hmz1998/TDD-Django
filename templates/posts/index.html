@@ -8,7 +8,7 @@
     <section class="pt-3 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Welcome to the my blog</h1>
+                <h1 class="fw-light">Welcome to my blog</h1>
                 <p class="lead text-muted">These are the latest posts</p>
             </div>
         </div>
@@ -24,7 +24,8 @@
                             <small class="text-muted">{{ post.created_at }}</small>
                             <p class="card-text mt-1">{{ post.description|truncatewords:15 }}</p>
                             <small class="text-muted"><a href="{{ post.get_absolute_url }}">read more</a></small>
-                            {% comment %} <a href="{{ post.get_absolute_url }}" class="">read more ...</a> {% endcomment %}
+                            {% comment %}
+                                <a href="{{ post.get_absolute_url }}" class="">read more ...</a> {% endcomment %}
                         </div>
                     </div>
                 </div>
