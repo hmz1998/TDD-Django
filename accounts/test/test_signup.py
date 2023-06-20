@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 from http import HTTPStatus
 
@@ -33,3 +34,19 @@ class AccountCreationTest(TestCase):
         }
         form = self.form_class(sample_data)
         self.assertTrue(form.is_valid())
+
+    def test_signup_form_creates_user_in_database(self):
+        User = get_user_model()
+        user = {
+            "email": "user1@app.com",
+            "username": "user1",
+            "password1": "@Hmz1377528#",
+            "password2": "@Hmz1377528#",
+        }
+
+        form = self.form_class(user)
+
+        if form.is_valid():
+            form.save()
+
+        self.assertEqual(User.objects.count(), 1)
