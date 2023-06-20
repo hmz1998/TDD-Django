@@ -1,0 +1,41 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}
+{{ post.title }}
+{% endblock title %}
+
+{% block body %}
+
+<div class="row mt-5">
+    <div class="col-md-8">
+
+        <article class="blog-post">
+            <h2 class="blog-post-title mb-1">{{ post.title }}</h2>
+            <p class="blog-post-meta">{{ post.created_at|safe }}</p>
+
+            <p>{{ post.description|linebreaks }}</p>
+
+        </article>
+
+    </div>
+
+    <div class="col-md-4">
+        <div class="position-sticky" style="top: 2rem;">
+
+            <div class="p-4">
+                <h4 class="fst-italic">Archives</h4>
+                {% if posts %}
+                    <ol class="list-unstyled mb-0">
+                        {% for post in posts %}
+                            <li><a href="{{post.get_absolute_url}}">{{ post.title|truncatewords:5 }}</a></li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+
