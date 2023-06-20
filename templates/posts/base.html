@@ -37,7 +37,10 @@
                     </form>
 
                     <div class="text-end">
-                        <button type="button" class="btn btn-outline-light me-2">Login</button>
+                        <a href="{% url 'accounts:login_page' %}">
+                            <button type="button" class="btn btn-outline-light me-2">Login</button>
+                        </a>
+
                         <a href="{% url 'accounts:signup_page' %}">
                             <button type="button" class="btn btn-warning">Sign-up</button>
                         </a>
